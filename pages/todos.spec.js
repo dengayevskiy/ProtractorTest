@@ -89,8 +89,15 @@ describe('Existing Tasks', function () {
         page.deleteOneTask();
     });
 
-});
+    it('should remove task if an empty text string was entered', function () {
+        page.addNewTask('my task to edit');
 
+        page.editTaskAndSubmit('');
+
+        expect(page.todoList.count(0));
+    });
+
+});
 
 describe('Check all', function () {
 
@@ -171,6 +178,19 @@ describe('Category', function () {
         page.categoryCompleted.click(); //go to the 'Completed' category
         expect(page.todoList.count()).toEqual(1); //there one tasks in 'Completed' category
         expect(page.todoList.get(0).getText()).toEqual('my completed task');
+
+        page.deleteOneTask();
+    });
+
+    it('should highlight the current category', function () {
+        page.addNewTask('my completed task');
+        expect(page.hasClass(page.categoryAll, 'selected'));
+
+        page.categoryActive.click();
+        expect(page.hasClass(page.categoryActive, 'selected'));
+
+        page.categoryCompleted.click();
+        expect(page.hasClass(page.categoryCompleted, 'selected'));
 
         page.deleteOneTask();
     });
