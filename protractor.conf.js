@@ -1,8 +1,6 @@
 exports.config = {
 
-    //SeleniumServerJar: 'C:/Users/Денис/AppData/Roaming/npm/node_modules/protractor/selenium/selenium-server-standalone-2.44.0.jar',
-
-    seleniumAddress: 'http://localhost:4444/wd/hub',
+    SeleniumServerJar: '.node_modules/protractor/selenium/selenium-server-standalone-2.44.0.jar',
 
     specs: ['pages/*'],
 
