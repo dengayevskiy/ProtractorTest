@@ -14,6 +14,8 @@ describe('New Task', function () {
     it('should add a task', function () {
         page.addNewTask('my first task');
 
+        expect(page.todoList.count()).toEqual(1);
+
         page.deleteOneTask();
     });
 
