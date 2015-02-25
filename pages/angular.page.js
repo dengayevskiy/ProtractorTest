@@ -12,7 +12,12 @@ var todoAppPage = function () {
     this.categoryCompleted = element(by.id('footer')).element(by.linkText('Completed'));
     this.counter = element(by.id('todo-count')).element(by.className('ng-binding'));
     this.completeOneTaskButton = element(by.model('todo.completed'));
-    this.completeAllTasksButton = element(by.model('allChecked'));
+    this.completeAllTasksCheck = element(by.model('allChecked'));
+    this.footer = element(by.id('footer'));
+    this.body = element(by.id('main'));
+    this.editInput = element(by.className('edit'));
+    this.doubleClickArea = element(by.className('view')).element(by.className('ng-binding'));
+
     var _this = this;
 
     this.get = function () {
@@ -22,6 +27,26 @@ var todoAppPage = function () {
     this.addNewTask = function (taskName) {
         this.newTodo.sendKeys(taskName);
         this.newTodo.sendKeys(protractor.Key.ENTER);
+    };
+
+    this.editTaskAndSubmit = function (taskName) {
+
+        browser.actions().doubleClick(this.doubleClickArea).perform().then(function () {
+            expect(_this.hasClass(_this.todoList.get(0), 'editing')).toBe(true);
+            _this.editInput.clear();
+            _this.editInput.sendKeys(taskName);
+            _this.editInput.sendKeys(protractor.Key.ENTER);
+        });
+    };
+
+    this.editTaskAndCancel = function (taskName) {
+
+        browser.actions().doubleClick(this.doubleClickArea).perform().then(function () {
+            expect(_this.hasClass(_this.todoList.get(0), 'editing')).toBe(true);
+            _this.editInput.clear();
+            _this.editInput.sendKeys(taskName);
+            _this.editInput.sendKeys(protractor.Key.ESCAPE);
+        });
     };
 
     this.deleteOneTask = function () {
@@ -44,6 +69,12 @@ var todoAppPage = function () {
             });
         });
         expect(this.todoList.count()).toEqual(0);
+    };
+
+    this.hasClass = function (element, cls) {
+        return element.getAttribute('class').then(function (classes) {
+            return classes.split(' ').indexOf(cls) !== -1;
+        });
     };
 };
 
