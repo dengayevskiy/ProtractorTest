@@ -30,7 +30,6 @@ var todoAppPage = function () {
     };
 
     this.editTaskAndSubmit = function (taskName) {
-
         browser.actions().doubleClick(this.doubleClickArea).perform().then(function () {
             expect(_this.hasClass(_this.todoList.get(0), 'editing')).toBe(true);
             _this.editInput.clear();
@@ -40,7 +39,6 @@ var todoAppPage = function () {
     };
 
     this.editTaskAndCancel = function (taskName) {
-
         browser.actions().doubleClick(this.doubleClickArea).perform().then(function () {
             expect(_this.hasClass(_this.todoList.get(0), 'editing')).toBe(true);
             _this.editInput.clear();
