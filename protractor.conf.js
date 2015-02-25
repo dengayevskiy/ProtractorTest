@@ -1,15 +1,14 @@
-
 exports.config = {
 
     //SeleniumServerJar: 'C:/Users/Денис/AppData/Roaming/npm/node_modules/protractor/selenium/selenium-server-standalone-2.44.0.jar',
 
     seleniumAddress: 'http://localhost:4444/wd/hub',
 
-    restartBrowserBetweenTests: false,
+    specs: ['pages/*'],
 
-    specs: ['specs/*'],
+    baseUrl: 'http://todomvc.com/examples/angularjs/#/',
 
-    onPrepare: function() {
+    onPrepare: function () {
         browser.driver.manage().window().maximize();
     },
 
@@ -18,5 +17,9 @@ exports.config = {
         defaultTimeoutInterval: 30000,
         isVerbose: true,
         includeStackTrace: true
+    },
+
+    capabilities: {
+        'browserName': 'firefox'
     }
 };
