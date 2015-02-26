@@ -31,7 +31,7 @@ describe('New Task', function () {
     it('should clean input field after task was added', function () {
         page.addNewTask('my first task');
 
-        expect(page.newTodo.getText()).toEqual('');
+        expect(page.newTodoInput.getText()).toEqual('');
 
         page.deleteOneTask();
     });

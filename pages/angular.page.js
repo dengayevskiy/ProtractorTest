@@ -2,7 +2,7 @@
 
 var todoAppPage = function () {
 
-    this.newTodo = element(by.model('newTodo'));
+    this.newTodoInput = element(by.model('newTodoInput'));
     this.todoList = element.all(by.repeater('todo in todos'));
     this.deleteButtons = element.all(by.className('destroy'));
     this.deleteButton = element.all(by.className('destroy')).get(0);
@@ -26,8 +26,8 @@ var todoAppPage = function () {
     };
 
     this.addNewTask = function (taskName) {
-        this.newTodo.sendKeys(taskName);
-        this.newTodo.sendKeys(protractor.Key.ENTER);
+        this.newTodoInput.sendKeys(taskName);
+        this.newTodoInput.sendKeys(protractor.Key.ENTER);
     };
 
     this.editTaskAndSubmit = function (taskName) {
