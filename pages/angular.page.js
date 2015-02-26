@@ -2,7 +2,7 @@
 
 var todoAppPage = function () {
 
-    this.newTodoInput = element(by.model('newTodoInput'));
+    this.newTodoInput = element(by.model('newTodo'));
     this.todoList = element.all(by.repeater('todo in todos'));
     this.deleteButtons = element.all(by.className('destroy'));
     this.deleteButton = element.all(by.className('destroy')).get(0);
