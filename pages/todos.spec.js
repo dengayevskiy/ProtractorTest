@@ -41,9 +41,9 @@ describe('Counter', function () {
 
     it('should show correct number of undone tasks', function () {
         page.addNewTask('my first task');
-        expect((page.counter).getText()).toEqual('1'); //counter was set to '1'
-        page.completeOneTaskButton.click(); //completing our task
-        expect((page.counter).getText()).toEqual('0'); //counter was set to '0'
+        expect((page.counter).getText()).toEqual('1');
+        page.completeOneTaskButton.click();
+        expect((page.counter).getText()).toEqual('0');
 
         page.deleteOneTask();
     });
@@ -183,31 +183,31 @@ describe('Category', function () {
     it('should display undone tasks in correct categories', function () {
         page.addNewTask('my undone task');
 
-        expect(page.todoList.count()).toEqual(1); //there is one element in the 'All' category
-        expect(page.todoList.get(0).getText()).toEqual('my undone task'); //element value is correct
+        expect(page.todoList.count()).toEqual(1);
+        expect(page.todoList.get(0).getText()).toEqual('my undone task');
 
-        page.categoryActive.click(); //go to the 'Active' category
-        expect(page.todoList.count()).toEqual(1); //there is one element in the 'Active' category
-        expect(page.todoList.get(0).getText()).toEqual('my undone task'); //element value is correct
+        page.categoryActive.click();
+        expect(page.todoList.count()).toEqual(1);
+        expect(page.todoList.get(0).getText()).toEqual('my undone task');
 
-        page.categoryCompleted.click(); //go to the 'Completed' category
-        expect(page.todoList.count()).toEqual(0); //there no tasks in 'Complete' category
+        page.categoryCompleted.click();
+        expect(page.todoList.count()).toEqual(0);
 
         page.deleteOneTask();
     });
 
     it('should display completed tasks in correct categories', function () {
         page.addNewTask('my completed task');
-        page.completeOneTaskButton.click(); //completing our task
+        page.completeOneTaskButton.click();
 
-        expect(page.todoList.count()).toEqual(1); //there is one element in the 'All' category
-        expect(page.todoList.get(0).getText()).toEqual('my completed task'); //element value is correct
+        expect(page.todoList.count()).toEqual(1);
+        expect(page.todoList.get(0).getText()).toEqual('my completed task');
 
-        page.categoryActive.click(); //go to the 'Active' category
-        expect(page.todoList.count()).toEqual(0); //there is no elements in 'Active' category
+        page.categoryActive.click();
+        expect(page.todoList.count()).toEqual(0);
 
-        page.categoryCompleted.click(); //go to the 'Completed' category
-        expect(page.todoList.count()).toEqual(1); //there one tasks in 'Completed' category
+        page.categoryCompleted.click();
+        expect(page.todoList.count()).toEqual(1);
         expect(page.todoList.get(0).getText()).toEqual('my completed task');
 
         page.deleteOneTask();
