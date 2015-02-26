@@ -26,7 +26,6 @@ describe('New Task', function () {
         expect(page.body.isDisplayed()).toBe(true);
 
         page.deleteOneTask();
-
     });
 
     it('should clean input field after task was added', function () {
@@ -35,7 +34,6 @@ describe('New Task', function () {
         expect(page.newTodo.getText()).toEqual('');
 
         page.deleteOneTask();
-
     });
 });
 
@@ -143,6 +141,37 @@ describe('Check all', function () {
         expect(page.hasClass(page.todoList.get(0), 'completed')).toBe(true);
         expect(page.hasClass(page.todoList.get(1), 'completed')).toBe(true);
         expect(page.hasClass(page.todoList.get(2), 'completed')).toBe(true);
+
+        page.deleteAllTasks();
+    });
+
+});
+
+describe('Clear completed button', function () {
+
+    it('should not be shown when there are only undone tasks in the list', function () {
+        page.addNewTask('my first task');
+
+        expect(page.hasClass(page.clearCompletedButton, 'ng-hide')).toBe(true);
+
+        page.deleteOneTask();
+    });
+
+    it('should be shown when there are only completed tasks in the list', function () {
+        page.addNewTask('my first task');
+        page.completeOneTaskButton.click();
+
+        expect(page.hasClass(page.clearCompletedButton, 'ng-hide')).toBe(false);
+
+        page.deleteOneTask();
+    });
+
+    it('should be shown when there are both completed and undone tasks in the list', function () {
+        page.addNewTask('1');
+        page.completeOneTaskButton.click();
+        page.addNewTask('2');
+
+        expect(page.hasClass(page.clearCompletedButton, 'ng-hide')).toBe(false);
 
         page.deleteAllTasks();
     });

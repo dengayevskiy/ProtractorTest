@@ -17,6 +17,7 @@ var todoAppPage = function () {
     this.body = element(by.id('main'));
     this.editInput = element(by.className('edit'));
     this.doubleClickArea = element(by.className('view')).element(by.className('ng-binding'));
+    this.clearCompletedButton = element(by.id('clear-completed'));
 
     var _this = this;
 
